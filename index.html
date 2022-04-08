@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dodge it!</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/asset/icon.svg">
+<link rel="stylesheet" href="/asset/style.css">
+</head>
+<body>
+<div id="ctr">
+<div id="abs">
+<div class="lds-heart"><div></div></div>
+<div id="sc"></div>
+<div class="btn" onclick="run()">START</div>
+</div>
+</div>
+<script>
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+if (getCookie("sc") != "") {
+  document.getElementById("sc").innerHTML = getCookie("sc");
+} else {
+  document.getElementById("sc").innerHTML = 0;
+}
+</script>
+<script src="/asset/p5.js"></script>
+<script src="/asset/p5collide.js"></script>
+<script src="/asset/script.js"></script>
+</body>
+</html>
